@@ -4,7 +4,7 @@ Si no usaron IA, escriban: **No usamos IA.**
 
 | Fecha | Integrante | Herramienta | Que preguntamos | Que aprendimos | Como lo comprobamos |
 |---|---|---|---|---|---|
-| 29/10/2026 |Todos los Integrantres|Visual Studio Code,Chat gpt| Como entrar a github o que debemos subir,Consultar las fallas o errores en la copilacion del codigo, generacion de diapositivas para la presentacion y ayuda con la estructura del codigo verficacion de errores y consultas con respecto a R1d |Aprendimos a conocer un poco mas de la interfaz de gitHub y creacion de tablas|Poniendolo en Practica
+| 5/11/2026 |Bryan joel Coaquira Mamani|Gemini| Pregunte sobre el apartado de estilos y la comprobación de errores|aprendí un poco mas del apartado de css|Comprobando en el codigo|
 
 Recuerden: se permite preguntar conceptos y practicar con ejemplos que NO son de Tux Store.
 No se permite pedir que escriba, complete o reescriba el codigo, el informe o las respuestas,
