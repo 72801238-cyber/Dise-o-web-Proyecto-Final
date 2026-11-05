@@ -2,8 +2,8 @@
 
 ## Datos del proyecto
 
-**Nombre de la tienda:** [Nombre de la tienda] 
-**Número de grupo:** [Número del grupo]
+**Nombre de la tienda:** Tienda de Hardware FURY
+**Número de grupo:** Grupo B
 
 ### Integrantes
 
