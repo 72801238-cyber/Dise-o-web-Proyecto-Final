@@ -9,7 +9,7 @@
 
 - **Integrante 1:** [Nombre y apellido] — [Rol o responsabilidad]
 - **Integrante 2:** [Bryan Joel Coaquira Mamani] — [Dev 2]
-- **Integrante 3:** [Nombre y apellido] — [Rol o responsabilidad]
+- **Integrante 3:** [Gonzalo Israel Rubín De Celis Espezúa] — [Dev 3]
 - **Integrante 4:** [Nombre y apellido] — [Rol o responsabilidad]
 
 ---
