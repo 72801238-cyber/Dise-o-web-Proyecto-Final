@@ -1,14 +1,14 @@
-# Bitácora de Desarrollo - Proyecto de Comercio Electrónico
+# Bitácora de Desarrollo - Proyecto de Carrito de Compras
 
 ## Datos del proyecto
 
-**Nombre de la tienda:** [Nombre de la tienda]  
+**Nombre de la tienda:** [Nombre de la tienda] 
 **Número de grupo:** [Número del grupo]
 
 ### Integrantes
 
 - **Integrante 1:** [Nombre y apellido] — [Rol o responsabilidad]
-- **Integrante 2:** [Nombre y apellido] — [Rol o responsabilidad]
+- **Integrante 2:** [Bryan Joel Coaquira Mamani] — [Dev 2]
 - **Integrante 3:** [Nombre y apellido] — [Rol o responsabilidad]
 - **Integrante 4:** [Nombre y apellido] — [Rol o responsabilidad]
 
