@@ -1,7 +1,7 @@
 // Array para almacenar los ítems añadidos
 let carrito = [];
 
-// Selección de elementos del DOM
+// Selección de elementos 
 const botonesComprar = document.querySelectorAll('.btn-comprar');
 const listaCarrito = document.getElementById('lista-carrito');
 const subtotalCarrito = document.getElementById('subtotal-carrito');
