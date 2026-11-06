@@ -10,7 +10,7 @@
 - **Integrante 1:** [Jose Carlos Alvarez Torres] — [Dev 1]
 - **Integrante 2:** [Bryan Joel Coaquira Mamani] — [Dev 2]
 - **Integrante 3:** [Gonzalo Israel Rubín De Celis Espezúa] — [Dev 3]
-- **Integrante 4:** [Nombre y apellido] — [Rol o responsabilidad]
+- **Integrante 4:** [Omar Danilo Lloclle Bedregal] — [Dev 4]
 
 ---
 
