@@ -9,3 +9,7 @@ Si no usaron IA, escriban: **No usamos IA.**
 | Fecha | Integrante | Herramienta | Que preguntamos | Que aprendimos | Como lo comprobamos |
 |---|---|---|---|---|---|
 | 5/11/2026 |Gonzalo Israel Rubin de Celis Espezua|Gemini|Pregunté sobre cómo agregar la etiqueta "v0.3" a un repositorio en GitHub y en el README|Aprendí a crear etiquetas (*tags*) desde Git o GitHub y a documentar la versión en el `README.md`|Comprobando en el repositorio de GitHub y el archivo README.md|
+
+| Fecha | Integrante | Herramienta | Que preguntamos | Que aprendimos | Como lo comprobamos |
+|---|---|---|---|---|---|
+| 5/11/2026 |Bryan joel Coaquira Mamani|Gemini|Pregunté como era la creación de Java Script|Aprendí a manejar el carrito de compras|Verificando su funcionamiento mediante el Live Server en Visual Studio Code|
