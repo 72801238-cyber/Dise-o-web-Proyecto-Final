@@ -5,7 +5,7 @@
    Descripción: Definición de la clase Producto y catálogo base
    ============================================================= */
 
-// Clase POO con constructor y 3 métodos requeridos por la rúbrica
+// Clase POO con constructor 
 class Producto {
     constructor(id, nombre, precio, categoria, stock, imagen, descripcion) {
         this.id = id;
