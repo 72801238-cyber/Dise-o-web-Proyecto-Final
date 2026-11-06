@@ -42,7 +42,7 @@ function actualizarCarrito() {
         });
     }
 
-    // Desglose del IGV (18%) tomando los precios base de venta
+    // Desglose del IGV (18%) 
     const subtotal = total / 1.18;
     const igv = total - subtotal;
 
