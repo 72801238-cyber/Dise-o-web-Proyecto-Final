@@ -132,3 +132,27 @@ footer {
     text-align: center;
     padding: 15px;
 }
+/* TODO A2 */
+    img { 
+        max-width: 100%; 
+        height: auto; 
+    }
+    /* TODO A3 */
+    .catalogo { 
+        display: grid; 
+        gap: 12px; 
+    }
+    /* TODO A4 */
+    .ficha button  {
+         min-height: 44px; 
+        }
+    /* TODO B1 */
+    @media (width >= 600px) { 
+        .catalogo { grid-template-columns: repeat(2,  1fr); } 
+        .destacada { grid-column: span 2; }
+        .menu { display: flex; gap:  16px; }
+    }
+    /* TODO B4 */
+    @media (width >= 1024px) { 
+        .catalogo { grid-template-columns: repeat(4,  1fr); } 
+    }
