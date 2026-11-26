@@ -2,62 +2,192 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Tienda Virtual</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi Tienda Virtual · FURY</title>
+
+    <!--  Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css"
+          integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX"
+          crossorigin="anonymous">
+
+    
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-    <header>
-        <h1> Tienda de Hardware <strong><em>FURY</em></strong></h1>
-        <div class="header-title">
-            <img src="logo.webp" alt="Logo Furia" class="logo-titulo">
+    <a class="visually-hidden-focusable" href="#productos">Saltar al contenido</a>
+
+    <header class="text-center py-4 bg-body-tertiary">
+        <div class="container">
+            <h1 class="h2">Tienda de Hardware <strong><em>FURY</em></strong></h1>
+            <div class="header-title">
+                <img src="logo.webp" alt="Logo Furia" class="logo-titulo img-fluid">
+            </div>
+            <p class="mb-0">CENTRO ENFOCADO EN LA VENTA DE ARTÍCULOS GAMER</p>
         </div>
-        <p>CENTRO ENFOCADO EN LA VENTA DE ARTÍCULOS GAMER</p>
     </header>
 
-    <nav>
-        <a href="#">Inicio</a>
-        <a href="#productos">Catálogo</a>
-        <a href="#carrito">Carrito (<span id="contador-carrito">0</span>)</a>
-        <a href="#contacto">Contacto</a>
+    <nav class="navbar navbar-expand-md sticky-top" data-bs-theme="dark" aria-label="Principal">
+        <div class="container">
+            <a class="navbar-brand" href="#">FURY</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#menu" aria-controls="menu" aria-expanded="false"
+                    aria-label="Abrir menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#productos">Catálogo</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#carrito">
+                            Carrito <span class="badge text-bg-warning" id="contador-carrito">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <section>
-        <h2>Bienvenido a nuestra tienda</h2>
-        <p>Encuentra los mejores productos a precios de Muertos</p>
+    <section class="text-center py-4">
+        <div class="container">
+            <h2>Bienvenido a nuestra tienda</h2>
+            <p class="lead">Encuentra los mejores productos a precios de Muertos</p>
+        </div>
     </section>
 
-    <main id="productos">
-        <h2>Productos Trending 🔥</h2>
+    <main id="productos" class="container pb-4">
+        <h2 class="mb-4">Productos Trending 🔥</h2>
 
-        <div class="contenedor" id="catalogo"></div>
+       
+        <div class="contenedor row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+
+            <div class="col">
+                <article class="producto card h-100 tarjeta-producto">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZyKz0BaeU7JSATAptnjuASKaHzunkkGYiBqzdqWRjTM3TD-4Q4DXYwoVi&s=10" class="card-img-top" alt="Laptop" loading="lazy">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="h5 card-title">Laptops Gamer</h3>
+                        <p class="card-text">Desde S/ 1800 Mano!! no seas probre</p>
+                        <button class="btn-comprar btn btn-primary mt-auto" data-nombre="Laptops Gamer" data-precio="1800">Comprar</button>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col">
+                <article class="producto card h-100 tarjeta-producto">
+                    <img src="https://promart.vteximg.com.br/arquivos/ids/10286892/Image-1.jpg?v=639077232605400000" class="card-img-top" alt="Celular" loading="lazy">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="h5 card-title">Celulares Gamer</h3>
+                        <p class="card-text">Precios accesibles desde S/900 soles</p>
+                        <button class="btn-comprar btn btn-primary mt-auto" data-nombre="Celulares Gamer" data-precio="900">Comprar</button>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col">
+                <article class="producto card h-100 tarjeta-producto">
+                    <img src="https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/4835/PMP20000382167/thumbnail-1.jpeg" class="card-img-top" alt="Auriculares" loading="lazy">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="h5 card-title">Auriculares</h3>
+                        <p class="card-text">Precios desde S/ 80</p>
+                        <button class="btn-comprar btn btn-primary mt-auto" data-nombre="Auriculares" data-precio="80">Comprar</button>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col">
+                <article class="producto card h-100 tarjeta-producto">
+                    <img src="https://carsaperupoc.vtexassets.com/arquivos/ids/202382/image-4aea4001f4a14d0fb8404adf6cc54663.jpg?v=639218202036470000" class="card-img-top" alt="Silla Gamer" loading="lazy">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="h5 card-title">Silla Gamer</h3>
+                        <p class="card-text">Para ti mi estimado S/ 499.90</p>
+                        <button class="btn-comprar btn btn-primary mt-auto" data-nombre="Silla Gamer" data-precio="499.90">Comprar</button>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col">
+                <article class="producto card h-100 tarjeta-producto">
+                    <img src="https://image.made-in-china.com/2f0j00mCJRbiAfEQqG/Gamer-PC-Gaming-Case-MID-Tower-ATX-M-ATX-Gaming-PC-Computer-Case-From-Aigo-Darkflash.webp" class="card-img-top" alt="Torre Gaming" loading="lazy">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="h5 card-title">Torre Gaming</h3>
+                        <p class="card-text">Precios desde S/ 3800</p>
+                        <button class="btn-comprar btn btn-primary mt-auto" data-nombre="Torre Gaming" data-precio="3800">Comprar</button>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col">
+                <article class="producto card h-100 tarjeta-producto">
+                    <img src="https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/4835/PMP20000382094/thumbnail-1.jpeg" class="card-img-top" alt="Mouse Pad Gaming" loading="lazy">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="h5 card-title">Mouse Pad Gaming</h3>
+                        <p class="card-text">Precios desde S/ 40</p>
+                        <button class="btn-comprar btn btn-primary mt-auto" data-nombre="Mouse Pad Gaming" data-precio="40">Comprar</button>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col">
+                <article class="producto card h-100 tarjeta-producto">
+                    <img src="https://carsaperupoc.vtexassets.com/arquivos/ids/212533-800-800?v=639259074752370000&width=800&height=800&aspect=true" class="card-img-top" alt="Micrófono Gaming" loading="lazy">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="h5 card-title">Microfono Gaming</h3>
+                        <p class="card-text">Precio Para ti S/ 59.90</p>
+                        <button class="btn-comprar btn btn-primary mt-auto" data-nombre="Microfono Gaming" data-precio="59.90">Comprar</button>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col">
+                <article class="producto card h-100 tarjeta-producto">
+                    <img src="https://m.media-amazon.com/images/I/81JFSH1og7L.jpg" class="card-img-top" alt="Pack Completo de Hatsune Miku" loading="lazy">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="h5 card-title">Pack Completo de Hatsune Miku</h3>
+                        <p class="card-text">Precios para otakus en oferta aprovecha!! S/ 1500</p>
+                        <button class="btn-comprar btn btn-primary mt-auto" data-nombre="Pack Completo de Hatsune Miku" data-precio="1500">Comprar</button>
+                    </div>
+                </article>
+            </div>
+
+        </div>
     </main>
 
-    <section id="carrito" class="seccion-carrito">
-        <h2>Carrito de Compras 🛒</h2>
-        <ul id="lista-carrito"></ul>
-        
-        <div class="desglose-pagos">
-            <p>Subtotal (sin IGV): <strong>S/ <span id="subtotal-carrito">0.00</span></strong></p>
-            <p>IGV (18%): <strong>S/ <span id="igv-carrito">0.00</span></strong></p>
-            <h3>Total Final: S/ <span id="total-carrito">0.00</span></h3>
+    <section id="carrito" class="seccion-carrito py-4 bg-body-tertiary">
+        <div class="container">
+            <h2>Carrito de Compras 🛒</h2>
+
+            
+            <ul id="lista-carrito" class="list-group mb-3"></ul>
+
+            <div class="desglose-pagos">
+                <p class="mb-1">Subtotal (sin IGV): <strong>S/ <span id="subtotal-carrito">0.00</span></strong></p>
+                <p class="mb-1">IGV (18%): <strong>S/ <span id="igv-carrito">0.00</span></strong></p>
+                <h3 class="h4 mt-2">Total Final: S/ <span id="total-carrito">0.00</span></h3>
+            </div>
+
+            <button id="btn-vaciar" type="button" class="btn btn-outline-danger mt-2">Vaciar Carrito</button>
         </div>
-
-        <button id="btn-vaciar">Vaciar Carrito</button>
     </section>
 
-    <section id="contacto">
-        <h2><strong>Contáctanos</strong></h2>
-        <p><strong>Correo: Fury_services@gmail.com</strong></p>
-        <p><strong>Teléfono: 945 930 884 </strong></p>
+    <section id="contacto" class="py-4">
+        <div class="container">
+            <h2><strong>Contáctanos</strong></h2>
+            <p class="mb-1"><strong>Correo: Fury_services@gmail.com</strong></p>
+            <p class="mb-0"><strong>Teléfono: 945 930 884</strong></p>
+        </div>
     </section>
 
-    <footer>
-        <p> Mi Tienda Virtual De Ventas</p>
+    <footer class="text-center py-3 bg-dark text-white">
+        <p class="mb-0">Mi Tienda Virtual De Ventas</p>
     </footer>
 
-    <script src="datos.js"></script>
+    <!-- Bundle de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu"
+            crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>
