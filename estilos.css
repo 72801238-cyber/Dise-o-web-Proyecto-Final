@@ -1,6 +1,6 @@
 /* =============================================================
    Curso      : Diseño Web
-   Evaluacion : Avance del 30% - Carrito de compras - Semana 12
+   Evaluacion : Avance del 60% - Bootstrap 5.3.9 - Semana 15
    Proyecto   : Tienda Web
    Institucion: Universidad Continental
    Semestre   : 2026-20
@@ -8,100 +8,91 @@
    NRC        : 42938
    Grupo      : B
    Integrantes: Coaquira Mamani Bryan Joel
-                Jose Carlos Alvarez Torres 
+                Jose Carlos Alvarez Torres
                 Gonzalo Israel Rubín De Celis Espezúa
                 Omar Danilo Lloclle Bedregal
+   
    ============================================================= */
 
+
+:root {
+    --marca: #25215c;
+    --marca-claro: #6259c7;
+    --fondo: #4bd3e6;
+    --nav: #333;
+    --peligro: #c73e3e;
+    --peligro-hover: #e02b2b;
+    --acento: #f2b134;
+    --bs-body-font-family: Arial, sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #4bd3e6;
+    background-color: var(--fondo);
 }
 
 header {
-    background-color: #25215c;
-    color: white;
+    background-color: var(--marca);
+    color: #000;          
     text-align: center;
     padding: 25px;
 }
 
-nav {
-    background-color: #333;
-    padding: 15px;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+.logo-titulo { max-height: 80px; }
+
+/* ---------- Navbar (misma especificidad que Bootstrap) ---------- */
+.navbar[data-bs-theme="dark"] {
+    background-color: var(--nav);
+    --bs-navbar-color: rgba(255, 255, 255, .9);
+    --bs-navbar-hover-color: #fff;
+    --bs-navbar-brand-color: #fff;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 15px;
+.navbar .nav-link {
     font-weight: bold;
 }
 
-section {
-    text-align: center;
-    padding: 20px;
-}
 
+section,
 main {
     text-align: center;
-    padding: 20px;
 }
 
-.contenedor {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-}
 
 .producto {
     background-color: white;
-    padding: 20px;
-    width: 200px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .producto img {
     width: 100%;
     height: 150px;
     object-fit: contain;
+    padding-top: 12px;
 }
 
-button {
-    background-color: #25215c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
+
+.btn-primary {
+    --bs-btn-bg: var(--marca);
+    --bs-btn-border-color: var(--marca);
+    --bs-btn-hover-bg: var(--marca-claro);
+    --bs-btn-hover-border-color: var(--marca-claro);
+    --bs-btn-active-bg: var(--marca-claro);
+    --bs-btn-active-border-color: var(--marca-claro);
     font-weight: bold;
 }
 
-button:hover {
-    background-color: #6259c7;
-}
 
 .seccion-carrito {
-    background-color: #ffffff;
+    background-color: #fcfcfc;
     max-width: 600px;
     margin: 30px auto;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 #lista-carrito {
-    list-style: none;
-    padding: 0;
     text-align: left;
 }
 
@@ -113,32 +104,45 @@ button:hover {
 .desglose-pagos {
     margin-top: 15px;
     text-align: right;
-    border-top: 2px solid #25215c;
+    border-top: 2px solid var(--marca);
     padding-top: 10px;
 }
 
 #btn-vaciar {
-    background-color: #c73e3e;
-    margin-top: 10px;
+    background-color: var(--peligro);
+    border-color: var(--peligro);
+    color: white;
+    font-weight: bold;
 }
 
 #btn-vaciar:hover {
-    background-color: #e02b2b;
+    background-color: var(--peligro-hover);
+    border-color: var(--peligro-hover);
 }
 
+
 footer {
-    background-color: #25215c;
+    background-color: var(--marca);
     color: white;
     text-align: center;
     padding: 15px;
 }
 
-    @media (width >= 600px) { 
-        .catalogo { grid-template-columns: repeat(2,  1fr); } 
-        .destacada { grid-column: span 2; }
-        .menu { display: flex; gap:  16px; }
+
+:focus-visible {
+    outline: 3px solid var(--acento);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
     }
-    
-    @media (width >= 1024px) { 
-        .catalogo { grid-template-columns: repeat(4,  1fr); } 
-    }
+}
+
+
+@media (min-width: 768px) {
+    .producto .card-title { min-height: 2.5em; }
+}
