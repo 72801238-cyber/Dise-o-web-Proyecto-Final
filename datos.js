@@ -71,7 +71,7 @@ const productosBase = [
         precio: 499.90,
         categoria: "Mobiliario",
         stock: 4,
-        imagen: "https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/4835/PMP20000382167/thumbnail-1.jpeg",
+        imagen: "https://carsaperupoc.vtexassets.com/arquivos/ids/202382/image-4aea4001f4a14d0fb8404adf6cc54663.jpg?v=639218202036470000",
         descripcion: "Silla reclinable hasta 180° con soporte lumbar y descansabrazos 3D."
     },
     {
@@ -80,7 +80,7 @@ const productosBase = [
         precio: 3800.00,
         categoria: "Computadoras",
         stock: 3,
-        imagen: "https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/4835/PMP20000382167/thumbnail-1.jpeg",
+        imagen: "https://image.made-in-china.com/2f0j00mCJRbiAfEQqG/Gamer-PC-Gaming-Case-MID-Tower-ATX-M-ATX-Gaming-PC-Computer-Case-From-Aigo-Darkflash.webp",
         descripcion: "PC de escritorio armada con procesador de última generación y refrigeración líquida."
     },
     {
@@ -89,7 +89,7 @@ const productosBase = [
         precio: 40.00,
         categoria: "Accesorios",
         stock: 20,
-        imagen: "https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/4835/PMP20000382167/thumbnail-1.jpeg",
+        imagen: "https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/4835/PMP20000382094/thumbnail-1.jpeg",
         descripcion: "Mouse pad de tela de alta precisión con bordes cosidos e iluminación RGB."
     },
     {
@@ -98,7 +98,7 @@ const productosBase = [
         precio: 59.90,
         categoria: "Accesorios",
         stock: 10,
-        imagen: "https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/4835/PMP20000382167/thumbnail-1.jpeg",
+        imagen: "https://carsaperupoc.vtexassets.com/arquivos/ids/212533-800-800?v=639259074752370000&width=800&height=800&aspect=true",
         descripcion: "Micrófono USB ideal para streaming y podcast con patrón polar cardioide."
     },
     {
@@ -107,7 +107,7 @@ const productosBase = [
         precio: 1500.00,
         categoria: "Computadoras",
         stock: 2,
-        imagen: "https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/4835/PMP20000382167/thumbnail-1.jpeg",
+        imagen: "https://m.media-amazon.com/images/I/81JFSH1og7L.jpg",
         descripcion: "Set edición especial de gabinete, teclado, mouse y auriculares con temática anime."
     }
 ];
