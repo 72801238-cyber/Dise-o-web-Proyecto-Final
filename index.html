@@ -41,7 +41,11 @@
                     <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#productos">Catálogo</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#carrito">
+                        <a class="nav-link"
+                           href="#carrito"
+                           data-bs-toggle="offcanvas"
+                           data-bs-target="#carrito"
+                           aria-controls="carrito">
                             Carrito (<span class="badge text-bg-warning" id="contador-carrito">0</span>)
                         </a>
                     </li>
@@ -63,22 +67,31 @@
         <div id="catalogo" class="contenedor row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3"></div>
     </main>
 
-    <section id="carrito" class="seccion-carrito py-4 bg-body-tertiary">
-        <div class="container">
-            <h2>Carrito de Compras 🛒</h2>
-
-            
+    <aside class="offcanvas offcanvas-end seccion-carrito"
+           tabindex="-1"
+           id="carrito"
+           aria-labelledby="titulo-carrito">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title h4 mb-0" id="titulo-carrito">Carrito de Compras 🛒</h2>
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Cerrar carrito"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
             <ul id="lista-carrito" class="list-group mb-3"></ul>
 
-            <div class="desglose-pagos">
+            <div class="desglose-pagos mt-auto">
                 <p class="mb-1">Subtotal (sin IGV): <strong>S/ <span id="subtotal-carrito">0.00</span></strong></p>
                 <p class="mb-1">IGV (18%): <strong>S/ <span id="igv-carrito">0.00</span></strong></p>
                 <h3 class="h4 mt-2">Total Final: S/ <span id="total-carrito">0.00</span></h3>
             </div>
 
-            <button id="btn-vaciar" type="button" class="btn btn-outline-danger mt-2">Vaciar Carrito</button>
+            <button id="btn-vaciar" type="button" class="btn btn-outline-danger mt-2 w-100">
+                Vaciar Carrito
+            </button>
         </div>
-    </section>
+    </aside>
 
     <section id="contacto" class="py-4">
         <div class="container">
