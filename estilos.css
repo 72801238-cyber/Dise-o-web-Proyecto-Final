@@ -11,10 +11,10 @@
                 Jose Carlos Alvarez Torres
                 Gonzalo Israel Rubín De Celis Espezúa
                 Omar Danilo Lloclle Bedregal
-   
+   Nota       : se carga DESPUÉS de Bootstrap.
    ============================================================= */
 
-
+/* ---------- Paleta de marca ---------- */
 :root {
     --marca: #25215c;
     --marca-claro: #6259c7;
@@ -32,7 +32,7 @@ body {
 
 header {
     background-color: var(--marca);
-    color: #000;          
+    color: white;
     text-align: center;
     padding: 25px;
 }
@@ -51,13 +51,13 @@ header {
     font-weight: bold;
 }
 
-
+/* ---------- Secciones ---------- */
 section,
 main {
     text-align: center;
 }
 
-
+/* ---------- Productos (cards de Bootstrap) ---------- */
 .producto {
     background-color: white;
     border-radius: 10px;
@@ -71,7 +71,7 @@ main {
     padding-top: 12px;
 }
 
-
+/* ---------- Botones ---------- */
 .btn-primary {
     --bs-btn-bg: var(--marca);
     --bs-btn-border-color: var(--marca);
@@ -82,22 +82,14 @@ main {
     font-weight: bold;
 }
 
-
+/* ---------- Carrito ---------- */
 .seccion-carrito {
-    background-color: var(--fondo);
-    color: #000;
-    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
-}
-
-.seccion-carrito .list-group-item {
     background-color: #ffffff;
-    color: #000;
-}
-
-.btn-eliminar-item {
-    line-height: 1;
-    padding: 0.15rem 0.45rem;
-    font-weight: bold;
+    max-width: 600px;
+    margin: 30px auto;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 #lista-carrito {
@@ -128,7 +120,7 @@ main {
     border-color: var(--peligro-hover);
 }
 
-
+/* ---------- Footer ---------- */
 footer {
     background-color: var(--marca);
     color: white;
@@ -136,7 +128,7 @@ footer {
     padding: 15px;
 }
 
-
+/* ---------- Accesibilidad ---------- */
 :focus-visible {
     outline: 3px solid var(--acento);
     outline-offset: 2px;
@@ -150,7 +142,26 @@ footer {
     }
 }
 
-
+/* ---------- Mobile First: solo min-width ---------- */
 @media (min-width: 768px) {
     .producto .card-title { min-height: 2.5em; }
+}
+
+/* ---------- Panel "Cobro exitoso" ---------- */
+.icono-check {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: #198754;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    animation: aparecer .4s ease-out;
+}
+
+.icono-check svg { width: 52px; height: 52px; }
+
+@keyframes aparecer {
+    from { transform: scale(.4); opacity: 0; }
+    to   { transform: scale(1);  opacity: 1; }
 }
