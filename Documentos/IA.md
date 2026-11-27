@@ -21,3 +21,6 @@ Si no usaron IA, escriban: **No usamos IA.**
 | Fecha | Integrante | Herramienta | Que preguntamos | Que aprendimos | Como lo comprobamos |
 |---|---|---|---|---|---|
 | 26/11/2026 |Bryan joel Coaquira Mamani|Gemini| Tuve que ayudarme para modificar mi tienda con el apartado de pagos|aprendí  muy poco|Comprobando en el codigo|
+| Fecha | Integrante | Herramienta | Que preguntamos | Que aprendimos | Como lo comprobamos |
+|---|---|---|---|---|---|
+| 26/11/2026 |Gonzalo Israel Rubín De Celis Espezúa|Cloude| Consulta sobre la creación lateral para el carrito de compras|Aprendí sobre el uso de "offcanvas" para la creación de paneles laterales|Se puede apreciar su uso en el carrito de compras|
