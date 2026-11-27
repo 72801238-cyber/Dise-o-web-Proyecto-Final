@@ -171,6 +171,23 @@ function agregarAlCarrito(idProducto, nombreFallback, precioFallback) {
     actualizarCarrito();
 }
 
+// Función para eliminar un ítem individual por índice y devolver su stock
+function eliminarItemCarrito(indice) {
+    if (indice < 0 || indice >= carrito.length) return;
+
+    const itemEliminado = carrito[indice];
+    if (typeof catalogoProductos !== "undefined" && itemEliminado.id !== null) {
+        const prod = catalogoProductos.find((p) => p.id === itemEliminado.id);
+        if (prod) {
+            prod.stock += 1;
+        }
+    }
+
+    carrito.splice(indice, 1);
+    guardarCarrito();
+    actualizarCarrito();
+}
+
 // Función para actualizar lista, subtotal, IGV (18%), total y contador
 function actualizarCarrito() {
     if (!listaCarrito) return;
@@ -181,11 +198,23 @@ function actualizarCarrito() {
     if (carrito.length === 0) {
         listaCarrito.innerHTML = '<li class="list-group-item">El carrito está vacío.</li>';
     } else {
-        carrito.forEach((item) => {
+        carrito.forEach((item, index) => {
             sumaTotal = redondear(sumaTotal + Number(item.precio));
             const li = document.createElement("li");
-            li.className = "list-group-item";
-            li.textContent = `${item.nombre} — S/ ${Number(item.precio).toFixed(2)}`;
+            li.className = "list-group-item d-flex justify-content-between align-items-center gap-2";
+
+            const textoSpan = document.createElement("span");
+            textoSpan.textContent = `${item.nombre} — S/ ${Number(item.precio).toFixed(2)}`;
+
+            const btnEliminar = document.createElement("button");
+            btnEliminar.type = "button";
+            btnEliminar.className = "btn btn-sm btn-outline-danger btn-eliminar-item";
+            btnEliminar.setAttribute("data-index", String(index));
+            btnEliminar.setAttribute("aria-label", `Eliminar ${item.nombre}`);
+            btnEliminar.textContent = "×";
+
+            li.appendChild(textoSpan);
+            li.appendChild(btnEliminar);
             listaCarrito.appendChild(li);
         });
     }
@@ -208,6 +237,17 @@ function actualizarCarrito() {
     } else {
         sincronizarStockVisual();
     }
+}
+
+// Escuchador para eliminar ítems uno por uno con la "×"
+if (listaCarrito) {
+    listaCarrito.addEventListener("click", (evento) => {
+        const botonEliminar = evento.target.closest(".btn-eliminar-item");
+        if (!botonEliminar) return;
+
+        const indice = Number(botonEliminar.getAttribute("data-index"));
+        eliminarItemCarrito(indice);
+    });
 }
 
 // Escuchador de eventos para los botones "Comprar" (solo agrega al carrito)
