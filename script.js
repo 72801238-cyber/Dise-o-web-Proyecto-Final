@@ -1,6 +1,6 @@
 // script.js
-// Array para almacenar los ítems añadidos
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+// Array para almacenar los ítems añadidos (recuperado de localStorage si existe)
+let carrito = cargarCarritoGuardado();
 
 // Selección de elementos
 const contenedorCatalogo =
@@ -15,20 +15,32 @@ const enlaceCarrito =
 const btnVaciar = document.getElementById("btn-vaciar");
 
 const redondear = (valor) => Math.round(Number(valor) * 100) / 100;
-function guardarCarrito() {
-    localStorage.setItem("carrito",JSON.stringify(carrito));
+
+function cargarCarritoGuardado() {
+    try {
+        const datos = JSON.parse(localStorage.getItem("carrito"));
+        return Array.isArray(datos) ? datos : [];
+    } catch {
+        return [];
+    }
 }
+
+function guardarCarrito() {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
 function restaurarStockDelCarrito() {
     if (typeof catalogoProductos === "undefined") {
         return;
     }
     carrito.forEach((item) => {
         const producto = catalogoProductos.find((p) => p.id === item.id);
-        if (producto && producto.stock > 0) {
-            producto.stock -= 1;
+        if (producto && producto.tieneStockDisponible(1)) {
+            producto.reducirStock(1);
         }
     });
 }
+
 function calcularDesglose(totalConIgv, tasaIgv = 0.18) {
     const total = redondear(totalConIgv);
     const subtotal = redondear(total / (1 + tasaIgv));
@@ -153,6 +165,7 @@ function agregarAlCarrito(idProducto, nombreFallback, precioFallback) {
             precio: Number(precioFallback)
         });
     }
+
     guardarCarrito();
     actualizarCarrito();
 }
