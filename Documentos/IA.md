@@ -18,4 +18,6 @@ Si no usaron IA, escriban: **No usamos IA.**
 |---|---|---|---|---|---|
 | 26/11/2026 |Bryan joel Coaquira Mamani|Gemini| Pregunte sobre el boostrap y una ayuda para saber donde se iba a colocar|aprendí un poco mas del apartado del boostrap|Comprobando en el codigo|
 
-
+| Fecha | Integrante | Herramienta | Que preguntamos | Que aprendimos | Como lo comprobamos |
+|---|---|---|---|---|---|
+| 26/11/2026 |Bryan joel Coaquira Mamani|Gemini| Tuve que ayudarme para modificar mi tienda con el apartado de pagos|aprendí  muy poco|Comprobando en el codigo|
