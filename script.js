@@ -1,6 +1,6 @@
 // script.js
 // Array para almacenar los ítems añadidos
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 // Selección de elementos
 const contenedorCatalogo =
@@ -15,7 +15,20 @@ const enlaceCarrito =
 const btnVaciar = document.getElementById("btn-vaciar");
 
 const redondear = (valor) => Math.round(Number(valor) * 100) / 100;
-
+function guardarCarrito() {
+    localStorage.setItem("carrito",JSON.stringify(carrito));
+}
+function restaurarStockDelCarrito() {
+    if (typeof catalogoProductos === "undefined") {
+        return;
+    }
+    carrito.forEach((item) => {
+        const producto = catalogoProductos.find((p) => p.id === item.id);
+        if (producto && producto.stock > 0) {
+            producto.stock -= 1;
+        }
+    });
+}
 function calcularDesglose(totalConIgv, tasaIgv = 0.18) {
     const total = redondear(totalConIgv);
     const subtotal = redondear(total / (1 + tasaIgv));
@@ -140,7 +153,7 @@ function agregarAlCarrito(idProducto, nombreFallback, precioFallback) {
             precio: Number(precioFallback)
         });
     }
-
+    guardarCarrito();
     actualizarCarrito();
 }
 
@@ -205,11 +218,13 @@ if (btnVaciar) {
             });
         }
         carrito = [];
+        localStorage.removeItem("carrito");
         actualizarCarrito();
     });
 }
 
 // Inicializar el catálogo y el carrito al cargar la página
+restaurarStockDelCarrito();
 if (typeof catalogoProductos !== "undefined" && contenedorCatalogo && contenedorCatalogo.id === "catalogo") {
     renderizarCatalogo(catalogoProductos);
 }
