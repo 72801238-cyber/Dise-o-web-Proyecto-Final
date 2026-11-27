@@ -112,7 +112,6 @@ const productosBase = [
     }
 ];
 
-// Instanciación del catálogo usando la clase Producto
 const catalogoProductos = productosBase.map(
     p => new Producto(p.id, p.nombre, p.precio, p.categoria, p.stock, p.imagen, p.descripcion)
 );
