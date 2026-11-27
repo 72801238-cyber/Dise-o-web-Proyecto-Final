@@ -1,29 +1,17 @@
-// Array para almacenar los ítems añadidos
 // script.js
+// Array para almacenar los ítems añadidos
 let carrito = [];
 
-// Selección de elementos 
-const botonesComprar = document.querySelectorAll('.btn-comprar');
-const listaCarrito = document.getElementById('lista-carrito');
-const subtotalCarrito = document.getElementById('subtotal-carrito');
-const igvCarrito = document.getElementById('igv-carrito');
-const totalCarrito = document.getElementById('total-carrito');
-const contadorCarrito = document.getElementById('contador-carrito');
-const btnVaciar = document.getElementById('btn-vaciar');
-
-// Escuchador de eventos para los botones "Comprar"
-botonesComprar.forEach(boton => {
-    boton.addEventListener('click', (e) => {
-        const productoNombre = e.target.getAttribute('data-nombre');
-        const productoPrecio = parseFloat(e.target.getAttribute('data-precio'));
-
-        agregarAlCarrito(productoNombre, productoPrecio);
-const contenedorCatalogo = document.getElementById("catalogo");
+// Selección de elementos
+const contenedorCatalogo =
+    document.getElementById("catalogo") || document.querySelector("#productos .contenedor");
 const listaCarrito = document.getElementById("lista-carrito");
 const subtotalCarrito = document.getElementById("subtotal-carrito");
 const igvCarrito = document.getElementById("igv-carrito");
 const totalCarrito = document.getElementById("total-carrito");
 const contadorCarrito = document.getElementById("contador-carrito");
+const enlaceCarrito =
+    document.getElementById("enlace-carrito") || document.querySelector('a[href="#carrito"]');
 const btnVaciar = document.getElementById("btn-vaciar");
 
 const redondear = (valor) => Math.round(Number(valor) * 100) / 100;
@@ -35,96 +23,194 @@ function calcularDesglose(totalConIgv, tasaIgv = 0.18) {
     return { subtotal, igv, total };
 }
 
+function obtenerColorCarrito(textoCompleto, cantidadItems) {
+    const longitud = String(textoCompleto).length;
+    if (longitud > 0 && Number(cantidadItems) > 0) {
+        return "#dc3545"; // Rojo cuando hay artículos agregados
+    }
+    return "#000000"; // Negro cuando está en 0
+}
+
 function crearTarjetaProducto(producto) {
+    const sinStock = !producto.tieneStockDisponible(1);
+    const textoStock = sinStock ? "Sin stock" : `Stock: ${producto.stock}`;
+
     return `
-        <article class="producto">
-            <img src="${producto.imagen}" alt="${producto.nombre}">
-            <h3>${producto.nombre}</h3>
-            <p>${producto.descripcion}</p>
-            <p><strong>${producto.obtenerPrecioFormateado()}</strong></p>
-            <button type="button" class="btn-comprar" data-id="${producto.id}">Comprar</button>
-        </article>
+        <div class="col">
+            <article class="producto card h-100 tarjeta-producto">
+                <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}" loading="lazy">
+                <div class="card-body d-flex flex-column">
+                    <h3 class="h5 card-title">${producto.nombre}</h3>
+                    <p class="card-text">${producto.descripcion}</p>
+                    <p class="card-text"><small>${textoStock}</small></p>
+                    <p class="card-text"><strong>${producto.obtenerPrecioFormateado()}</strong></p>
+                    <button
+                        type="button"
+                        class="btn-comprar btn btn-primary mt-auto"
+                        data-id="${producto.id}"
+                        data-nombre="${producto.nombre}"
+                        data-precio="${producto.precio}"
+                        ${sinStock ? "disabled" : ""}
+                    >
+                        ${sinStock ? "Agotado" : "Comprar"}
+                    </button>
+                </div>
+            </article>
+        </div>
     `;
 }
 
 function renderizarCatalogo(listaProductos) {
-    if (!contenedorCatalogo) return;
+    if (!contenedorCatalogo || !Array.isArray(listaProductos)) return;
     contenedorCatalogo.innerHTML = listaProductos.map(crearTarjetaProducto).join("");
 }
 
-function agregarAlCarrito(idProducto) {
-    const producto = catalogoProductos.find((item) => item.id === Number(idProducto));
-    if (!producto || !producto.tieneStockDisponible(1)) return;
+function sincronizarStockVisual() {
+    if (!contenedorCatalogo || typeof catalogoProductos === "undefined") return;
+    const tarjetas = contenedorCatalogo.querySelectorAll(".producto");
 
-    carrito.push({
-        id: producto.id,
-        nombre: producto.nombre,
-        precio: Number(producto.precio)
+    tarjetas.forEach((tarjeta) => {
+        const boton = tarjeta.querySelector(".btn-comprar");
+        if (!boton) return;
+
+        const idAttr = boton.getAttribute("data-id");
+        const nombreAttr = (boton.getAttribute("data-nombre") || "").trim().toLowerCase();
+
+        const producto = catalogoProductos.find((item) => {
+            if (idAttr) return Number(item.id) === Number(idAttr);
+            return item.nombre.trim().toLowerCase().includes(nombreAttr) ||
+                nombreAttr.includes(item.nombre.trim().toLowerCase());
+        });
+
+        if (!producto) return;
+
+        let etiquetaStock = tarjeta.querySelector(".stock-dinamico");
+        if (!etiquetaStock) {
+            etiquetaStock = document.createElement("p");
+            etiquetaStock.className = "card-text small stock-dinamico mb-2";
+            boton.parentElement.insertBefore(etiquetaStock, boton);
+        }
+
+        const disponible = producto.tieneStockDisponible(1);
+        etiquetaStock.textContent = disponible ? `Stock: ${producto.stock}` : "Sin stock";
+        boton.disabled = !disponible;
+        boton.textContent = disponible ? "Comprar" : "Agotado";
     });
-});
+}
 
-// Función para agregar ítems al arreglo
-function agregarAlCarrito(nombre, precio) {
-    carrito.push({ nombre, precio });
+function actualizarEstadoCarritoNav(cantidad) {
+    if (contadorCarrito) {
+        contadorCarrito.textContent = String(cantidad);
+    }
+    if (enlaceCarrito) {
+        const textoEtiqueta = `Carrito (${cantidad})`;
+        enlaceCarrito.style.color = obtenerColorCarrito(textoEtiqueta, cantidad);
+    }
+}
+
+// Función para agregar ítems al arreglo validando stock
+function agregarAlCarrito(idProducto, nombreFallback, precioFallback) {
+    let producto = null;
+
+    if (typeof catalogoProductos !== "undefined") {
+        if (idProducto !== null && idProducto !== undefined && idProducto !== "") {
+            producto = catalogoProductos.find((item) => item.id === Number(idProducto));
+        } else if (nombreFallback) {
+            const buscado = String(nombreFallback).trim().toLowerCase();
+            producto = catalogoProductos.find(
+                (item) =>
+                    item.nombre.trim().toLowerCase().includes(buscado) ||
+                    buscado.includes(item.nombre.trim().toLowerCase())
+            );
+        }
+    }
+
+    if (producto) {
+        if (!producto.tieneStockDisponible(1)) return;
+        producto.reducirStock(1);
+        carrito.push({
+            id: producto.id,
+            nombre: producto.nombre,
+            precio: Number(producto.precio)
+        });
+    } else if (nombreFallback && !Number.isNaN(Number(precioFallback))) {
+        carrito.push({
+            id: null,
+            nombre: nombreFallback,
+            precio: Number(precioFallback)
+        });
+    }
+
     actualizarCarrito();
 }
 
 // Función para actualizar lista, subtotal, IGV (18%), total y contador
 function actualizarCarrito() {
-    listaCarrito.innerHTML = '';
-    let total = 0;
     if (!listaCarrito) return;
     listaCarrito.innerHTML = "";
 
     let sumaTotal = 0;
 
     if (carrito.length === 0) {
-        listaCarrito.innerHTML = '<li>El carrito está vacío.</li>';
-        listaCarrito.innerHTML = "<li>El carrito está vacío.</li>";
+        listaCarrito.innerHTML = '<li class="list-group-item">El carrito está vacío.</li>';
     } else {
         carrito.forEach((item) => {
-            total += item.precio;
-            const li = document.createElement('li');
-            li.textContent = `${item.nombre} — S/ ${item.precio.toFixed(2)}`;
             sumaTotal = redondear(sumaTotal + Number(item.precio));
             const li = document.createElement("li");
+            li.className = "list-group-item";
             li.textContent = `${item.nombre} — S/ ${Number(item.precio).toFixed(2)}`;
             listaCarrito.appendChild(li);
         });
     }
 
-    // Desglose del IGV (18%) 
-    const subtotal = total / 1.18;
-    const igv = total - subtotal;
+    // Desglose del IGV (18%)
     const { subtotal, igv, total } = calcularDesglose(sumaTotal);
 
     // Actualización de textos formateados a 2 decimales
     if (subtotalCarrito) subtotalCarrito.textContent = subtotal.toFixed(2);
     if (igvCarrito) igvCarrito.textContent = igv.toFixed(2);
     if (totalCarrito) totalCarrito.textContent = total.toFixed(2);
-    if (contadorCarrito) contadorCarrito.textContent = carrito.length;
+
+    actualizarEstadoCarritoNav(carrito.length);
+
+    if (typeof catalogoProductos !== "undefined" && contenedorCatalogo && contenedorCatalogo.id === "catalogo") {
+        renderizarCatalogo(catalogoProductos);
+    } else {
+        sincronizarStockVisual();
+    }
 }
 
-// Evento para limpiar el carrito de compras
+// Escuchador de eventos para los botones "Comprar"
 if (contenedorCatalogo) {
     contenedorCatalogo.addEventListener("click", (evento) => {
         const boton = evento.target.closest(".btn-comprar");
-        if (!boton) return;
+        if (!boton || boton.disabled) return;
+
         const id = boton.getAttribute("data-id");
-        agregarAlCarrito(id);
+        const nombre = boton.getAttribute("data-nombre");
+        const precio = parseFloat(boton.getAttribute("data-precio"));
+        agregarAlCarrito(id, nombre, precio);
     });
 }
 
+// Evento para limpiar el carrito de compras y devolver stock
 if (btnVaciar) {
-    btnVaciar.addEventListener('click', () => {
     btnVaciar.addEventListener("click", () => {
+        if (typeof catalogoProductos !== "undefined") {
+            carrito.forEach((item) => {
+                const prod = catalogoProductos.find((p) => p.id === item.id);
+                if (prod) {
+                    prod.stock += 1;
+                }
+            });
+        }
         carrito = [];
         actualizarCarrito();
     });
 }
 
-// Inicializar el carrito vacío al cargar la página
-if (typeof catalogoProductos !== "undefined") {
+// Inicializar el catálogo y el carrito al cargar la página
+if (typeof catalogoProductos !== "undefined" && contenedorCatalogo && contenedorCatalogo.id === "catalogo") {
     renderizarCatalogo(catalogoProductos);
 }
 actualizarCarrito();
