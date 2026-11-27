@@ -14,7 +14,6 @@
    Nota       : se carga DESPUÉS de Bootstrap.
    ============================================================= */
 
-/* ---------- Paleta de marca ---------- */
 :root {
     --marca: #25215c;
     --marca-claro: #6259c7;
@@ -39,7 +38,6 @@ header {
 
 .logo-titulo { max-height: 80px; }
 
-/* ---------- Navbar (misma especificidad que Bootstrap) ---------- */
 .navbar[data-bs-theme="dark"] {
     background-color: var(--nav);
     --bs-navbar-color: rgba(255, 255, 255, .9);
@@ -51,13 +49,11 @@ header {
     font-weight: bold;
 }
 
-/* ---------- Secciones ---------- */
 section,
 main {
     text-align: center;
 }
 
-/* ---------- Productos (cards de Bootstrap) ---------- */
 .producto {
     background-color: white;
     border-radius: 10px;
@@ -71,7 +67,6 @@ main {
     padding-top: 12px;
 }
 
-/* ---------- Botones ---------- */
 .btn-primary {
     --bs-btn-bg: var(--marca);
     --bs-btn-border-color: var(--marca);
@@ -82,7 +77,6 @@ main {
     font-weight: bold;
 }
 
-/* ---------- Carrito lateral derecho ---------- */
 .seccion-carrito {
     background-color: var(--fondo);
     color: #000;
@@ -124,7 +118,6 @@ main {
     border-color: var(--peligro-hover);
 }
 
-/* ---------- Footer ---------- */
 footer {
     background-color: var(--marca);
     color: white;
@@ -132,7 +125,6 @@ footer {
     padding: 15px;
 }
 
-/* ---------- Accesibilidad ---------- */
 :focus-visible {
     outline: 3px solid var(--acento);
     outline-offset: 2px;
@@ -146,12 +138,10 @@ footer {
     }
 }
 
-/* ---------- Mobile First: solo min-width ---------- */
 @media (min-width: 768px) {
     .producto .card-title { min-height: 2.5em; }
 }
 
-/* ---------- Panel "Cobro exitoso" ---------- */
 .icono-check {
     width: 90px;
     height: 90px;
