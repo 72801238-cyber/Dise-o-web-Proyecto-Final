@@ -41,10 +41,10 @@ function restaurarStockDelCarrito() {
     });
 }
 
-function calcularDesglose(totalConIgv, tasaIgv = 0.18) {
-    const total = redondear(totalConIgv);
-    const subtotal = redondear(total / (1 + tasaIgv));
-    const igv = redondear(total - subtotal);
+function calcularDesglose(subtotalBase, tasaIgv = 0.18) {
+    const subtotal = redondear(subtotalBase);
+    const igv = redondear(subtotal * tasaIgv);
+    const total = redondear(subtotal + igv);
     return { subtotal, igv, total };
 }
 
