@@ -13,3 +13,9 @@ Si no usaron IA, escriban: **No usamos IA.**
 | Fecha | Integrante | Herramienta | Que preguntamos | Que aprendimos | Como lo comprobamos |
 |---|---|---|---|---|---|
 | 5/11/2026 |Bryan joel Coaquira Mamani|Gemini|Pregunté como era la creación de Java Script|Aprendí a manejar el carrito de compras|Verificando su funcionamiento mediante el Live Server en Visual Studio Code|
+
+| Fecha | Integrante | Herramienta | Que preguntamos | Que aprendimos | Como lo comprobamos |
+|---|---|---|---|---|---|
+| 26/11/2026 |Bryan joel Coaquira Mamani|Gemini| Pregunte sobre el boostrap y una ayuda para saber donde se iba a colocar|aprendí un poco mas del apartado del boostrap|Comprobando en el codigo|
+
+
