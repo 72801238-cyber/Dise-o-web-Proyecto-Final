@@ -1,8 +1,6 @@
 // script.js
-// Array para almacenar los ítems añadidos (recuperado de localStorage si existe)
 let carrito = cargarCarritoGuardado();
 
-// Selección de elementos
 const contenedorCatalogo =
     document.getElementById("catalogo") || document.querySelector("#productos .contenedor");
 const listaCarrito = document.getElementById("lista-carrito");
@@ -52,9 +50,9 @@ function calcularDesglose(totalConIgv, tasaIgv = 0.18) {
 function obtenerColorCarrito(textoCompleto, cantidadItems) {
     const longitud = String(textoCompleto).length;
     if (longitud > 0 && Number(cantidadItems) > 0) {
-        return "#ffc107"; // Amarillo cuando hay artículos (se lee bien en la navbar oscura)
+        return "#ffc107"; 
     }
-    return "#ffffff"; // Blanco cuando está en 0
+    return "#ffffff"; 
 }
 
 function crearTarjetaProducto(producto) {
@@ -134,7 +132,6 @@ function actualizarEstadoCarritoNav(cantidad) {
     }
 }
 
-// Función para agregar ítems al arreglo validando stock
 function agregarAlCarrito(idProducto, nombreFallback, precioFallback) {
     let producto = null;
 
@@ -171,7 +168,6 @@ function agregarAlCarrito(idProducto, nombreFallback, precioFallback) {
     actualizarCarrito();
 }
 
-// Función para eliminar un ítem individual por índice y devolver su stock
 function eliminarItemCarrito(indice) {
     if (indice < 0 || indice >= carrito.length) return;
 
@@ -188,7 +184,6 @@ function eliminarItemCarrito(indice) {
     actualizarCarrito();
 }
 
-// Función para actualizar lista, subtotal, IGV (18%), total y contador
 function actualizarCarrito() {
     if (!listaCarrito) return;
     listaCarrito.innerHTML = "";
@@ -219,17 +214,14 @@ function actualizarCarrito() {
         });
     }
 
-    // Desglose del IGV (18%)
     const { subtotal, igv, total } = calcularDesglose(sumaTotal);
 
-    // Actualización de textos formateados a 2 decimales
     if (subtotalCarrito) subtotalCarrito.textContent = subtotal.toFixed(2);
     if (igvCarrito) igvCarrito.textContent = igv.toFixed(2);
     if (totalCarrito) totalCarrito.textContent = total.toFixed(2);
 
     actualizarEstadoCarritoNav(carrito.length);
 
-    // "Pagar ahora" solo se activa si hay productos en el carrito
     if (btnPagar) btnPagar.disabled = carrito.length === 0;
 
     if (typeof catalogoProductos !== "undefined" && contenedorCatalogo && contenedorCatalogo.id === "catalogo") {
@@ -239,7 +231,6 @@ function actualizarCarrito() {
     }
 }
 
-// Escuchador para eliminar ítems uno por uno con la "×"
 if (listaCarrito) {
     listaCarrito.addEventListener("click", (evento) => {
         const botonEliminar = evento.target.closest(".btn-eliminar-item");
@@ -250,7 +241,6 @@ if (listaCarrito) {
     });
 }
 
-// Escuchador de eventos para los botones "Comprar" (solo agrega al carrito)
 if (contenedorCatalogo) {
     contenedorCatalogo.addEventListener("click", (evento) => {
         const boton = evento.target.closest(".btn-comprar");
@@ -263,7 +253,6 @@ if (contenedorCatalogo) {
     });
 }
 
-// Evento para limpiar el carrito de compras y devolver stock
 if (btnVaciar) {
     btnVaciar.addEventListener("click", () => {
         if (typeof catalogoProductos !== "undefined") {
@@ -280,14 +269,12 @@ if (btnVaciar) {
     });
 }
 
-// ---------- Pago SIMULADO: panel deslizante (sin datos bancarios) ----------
 const panelCobroEl = document.getElementById("panel-cobro");
 const panelCobro = new bootstrap.Offcanvas(panelCobroEl);
 const vistaProcesando = document.getElementById("cobro-procesando");
 const vistaExito = document.getElementById("cobro-exito");
 let temporizadorCobro = null;
 
-// Guarda el pedido en un historial dentro de localStorage
 function guardarPedido(pedido) {
     try {
         const historial = JSON.parse(localStorage.getItem("pedidos")) ?? [];
@@ -301,19 +288,16 @@ if (btnPagar) {
     btnPagar.addEventListener("click", () => {
         if (carrito.length === 0) return;
 
-        // 1. Se hace la cuenta con lo que el usuario ya seleccionó
         const suma = carrito.reduce((acum, item) => redondear(acum + Number(item.precio)), 0);
         const { total } = calcularDesglose(suma);
         const cantidad = carrito.length;
         const numeroPedido = "PED-" + Date.now().toString(36).toUpperCase();
         const productosComprados = [...carrito];
 
-        // 2. Entra el panel mostrando "Calculando tu cuenta..."
         vistaProcesando.classList.remove("d-none");
         vistaExito.classList.add("d-none");
         panelCobro.show();
 
-        // 3. Al terminar: cobro exitoso, pedido guardado y carrito vacío
         clearTimeout(temporizadorCobro);
         temporizadorCobro = setTimeout(() => {
             guardarPedido({
@@ -337,7 +321,6 @@ if (btnPagar) {
         }, 1500);
     });
 
-    // Si cierran el panel mientras calcula, se cancela el pago y el carrito queda intacto
     panelCobroEl.addEventListener("hidden.bs.offcanvas", () => {
         if (!vistaProcesando.classList.contains("d-none")) {
             clearTimeout(temporizadorCobro);
@@ -346,7 +329,6 @@ if (btnPagar) {
     });
 }
 
-// Inicializar el catálogo y el carrito al cargar la página
 restaurarStockDelCarrito();
 if (typeof catalogoProductos !== "undefined" && contenedorCatalogo && contenedorCatalogo.id === "catalogo") {
     renderizarCatalogo(catalogoProductos);
